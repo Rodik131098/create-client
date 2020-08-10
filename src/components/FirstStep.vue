@@ -1,5 +1,6 @@
 <template>
     <div class="step">
+
         <input-field  title="Фамилия*" 
                 placeholder="Фамилия" 
                 name="last-name"
@@ -8,6 +9,7 @@
                 v-model="$v.lastName.$model">
             <p v-if="!$v.lastName.required">Поле обязательно для заполнения.</p>
         </input-field>
+
         <input-field  title="Имя*" 
                 placeholder="Имя" 
                 name="first-name"
@@ -16,6 +18,7 @@
                 v-model="$v.firstName.$model">
             <p v-if="!$v.firstName.required">Поле обязательно для заполнения.</p>
         </input-field>
+
         <input-field  title="Отчество" 
                 placeholder="Отчество" 
                 name="middle-name"
@@ -23,6 +26,7 @@
                 :error="false" 
                 v-model="middleName">
         </input-field>
+
         <input-field  title="Дата рождения*"
                 type="date" 
                 placeholder="Дата рождения" 
@@ -32,6 +36,7 @@
                 v-model="$v.birthDate.$model">
             <p v-if="!$v.birthDate.required">Поле обязательно для заполнения.</p>
         </input-field>
+
         <input-field  title="Номер телефона*" 
                 placeholder="79990001122" 
                 name="phone-number"
@@ -41,6 +46,7 @@
             <p v-if="!$v.phoneNumber.required">Поле обязательно для заполнения.</p>
             <p v-if="!$v.phoneNumber.isPhone">Начинается с 7, затем 10 цифр.</p>
         </input-field>
+
         <field-template title="Пол">
             <template v-slot:content>
                 <div class="field__radio">
@@ -55,6 +61,21 @@
                 </div>
             </template>
         </field-template>
+
+        <select-field   title="Лечащий врач"
+                        name="phisician"
+                        v-model="phisician"
+                        >
+            <template v-slot:options>
+                <option value="" disabled selected>Лечащий врач</option>
+                <option value="Ivanov">Иванов</option>
+                <option value="Zaharov">Захаров</option>
+                <option value="Chernisheva">Чернышева</option>
+            </template>
+        </select-field>
+        <checkbox-field>
+
+        </checkbox-field>
     </div>
 </template>
 
@@ -62,6 +83,8 @@
 import InputField from "@/components/InputField.vue"
 import FieldTemplate from "@/components/FieldTemplate.vue"
 import CustomRadio from "@/components/CustomRadio.vue"
+import SelectField from "@/components/SelectField.vue"
+import CheckboxField from "@/components/CheckboxField.vue"
 import { required } from "vuelidate/lib/validators"
 
 export default {
@@ -74,7 +97,7 @@ export default {
             birthDate: "",
             phoneNumber: "",
             gender: "male",
-            clientsGroup: "",
+            clientsGroup: [],
             phisician: "",
             puhsSms: "" 
         }
@@ -105,12 +128,17 @@ export default {
                 }
                 return true;
             }
+        },
+        clientsGroup: {
+            required
         }
     },
     components: {
         InputField,
         FieldTemplate,
-        CustomRadio
+        CustomRadio,
+        SelectField,
+        CheckboxField
     }
 }
 </script>

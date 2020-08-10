@@ -31,6 +31,7 @@ export default {
 </script>
 
 <style lang="scss">
+    $err-color: rgb(177, 31, 31);
     
     .client-form{
         $r: &;
@@ -49,5 +50,17 @@ export default {
         }
     }
     
-
+    .input{
+        width: 100%;
+        box-sizing: border-box;
+        height: 35px;
+        padding: 0;
+        font-size: 16px;
+        border: none;
+        border-bottom: 2px solid #999;
+        outline: none;
+        &:focus{
+            border-color: rgb(72, 82, 179);
+        }
+    }
 </style>
