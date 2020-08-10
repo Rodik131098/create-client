@@ -73,8 +73,9 @@
                 <option value="Chernisheva">Чернышева</option>
             </template>
         </select-field>
-        <checkbox-field>
 
+        <checkbox-field primValue="push-sms" v-model="pushSms" :checked="pushSms">
+            <template v-slot:label>Отправлять смс</template>
         </checkbox-field>
     </div>
 </template>
@@ -99,7 +100,7 @@ export default {
             gender: "male",
             clientsGroup: [],
             phisician: "",
-            puhsSms: "" 
+            pushSms: true 
         }
     },
     validations: {
