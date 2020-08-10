@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <h1>Создание клиента</h1>
-    <CreateClientForm/>
+    <client-form></client-form>
   </div>
 </template>
 
 <script>
-import CreateClientForm from './components/CreateClientForm.vue'
+import ClientForm from './components/ClientForm.vue'
 
 export default {
   name: 'App',
   components: {
-    CreateClientForm
+    ClientForm
   }
 }
 </script>
