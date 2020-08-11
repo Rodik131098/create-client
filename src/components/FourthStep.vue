@@ -29,7 +29,7 @@
                 placeholder="Номер" 
                 name="number"
                 class="client-form__field"
-                v-model="siries">
+                v-model="number">
         </input-field>
         
         <input-field  title="Кем выдан" 
