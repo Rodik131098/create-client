@@ -1,22 +1,20 @@
 <template>
     <div class="checkbox-field">
-        <field-template>
-            <template v-slot:content>
-                <label class="checkbox-field__field">
-                    <input @change="changeHandler"
-                           :checked="checked"
-                           type="checkbox" 
-                           :value="primValue" 
-                           class="checkbox-field__input">
-                    <slot name="label"/>
-                </label>
-            </template>
-        </field-template>
+        
+        <label class="checkbox-field__field">
+            <input @change="changeHandler"
+                    :checked="checked"
+                    type="checkbox" 
+                    :value="primValue" 
+                    class="checkbox-field__input">
+            <slot name="label"/>
+        </label>
+            
     </div>
 </template>
 
 <script>
-    import FieldTemplate from "@/components/FieldTemplate.vue"
+    
     export default {
         name: "CheckboxField",
         props: {
@@ -30,9 +28,6 @@
             changeHandler(e){
                 this.$emit('input', e.target.checked)
             }
-        },
-        components: {
-            FieldTemplate
         }
     }
 </script>
