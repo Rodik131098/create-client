@@ -42,5 +42,8 @@
     &__input{
         margin: 0 5px 0 0;
     }
+    &_margin-bottom_20{
+        margin-bottom: 20px;
+    }
 }
 </style>

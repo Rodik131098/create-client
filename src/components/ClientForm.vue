@@ -1,9 +1,13 @@
 <template>
     <div>
         <form action="" class="client-form">
-            <h1>Создание клиента</h1>
+            <h1 v-if="!steps[4]">Создание клиента</h1>
             <div class="client-form__control-elements">
-                <first-step/>
+                <first-step v-if="steps[0]" @next="next"/>
+                <second-step v-if="steps[1]" @next="next"/>
+                <third-step v-if="steps[2]" @next="next"/>
+                <fourth-step v-if="steps[3]" @next="next"/>
+                <finish-step v-if="steps[4]" @next="next"/>
             </div>
         </form>
     </div>
@@ -11,21 +15,32 @@
 
 <script>
 import FirstStep from "@/components/FirstStep.vue"
+import SecondStep from "@/components/SecondStep.vue"
+import ThirdStep from "@/components/ThirdStep.vue"
+import FourthStep from "@/components/FourthStep.vue"
+import FinishStep from "@/components/FinishStep.vue"
+
+
 export default {
     name: "ClientForm",
     data(){
-
         return {
-            steps: {
-                firstStep: true,
-                secondStep: false,
-                thirdStep: false
-            },
-            lastName: ""
+            steps: [true, false, false, false, false]
+        }
+    },
+    methods: {
+        next(elem){
+            let steps = [false, false, false, false, false];
+            steps[elem + 1] = true;
+            this.steps = steps;
         }
     },
     components: {
-        FirstStep
+        FirstStep,
+        SecondStep,
+        ThirdStep,
+        FourthStep,
+        FinishStep
     }
 }
 </script>

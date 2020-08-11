@@ -14,7 +14,7 @@
 </template>
 
 <script>
-    import FieldTemplate from "@/components/FieldTemplate.vue"
+    import FieldTemplate from "@/components/base/FieldTemplate.vue"
     export default {
         name: "CheckboxGroup",
         props: {

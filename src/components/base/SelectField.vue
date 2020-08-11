@@ -1,6 +1,6 @@
 <template>
     <div class="select-field">
-        <field-template :title="title">
+        <field-template :title="title" :error="error">
             <template v-slot:content>
                 <select :name="name" 
                         class="select-field__select input"
@@ -17,13 +17,14 @@
 </template>
 
 <script>
-    import FieldTemplate from "@/components/FieldTemplate.vue"
+    import FieldTemplate from "@/components/base/FieldTemplate.vue"
 
     export default {
         name: "SelectField",
         props: {
             title: String,
-            name: String
+            name: String,
+            error: Boolean
         },
         data(){
             return {

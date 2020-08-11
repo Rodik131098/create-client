@@ -1,42 +1,6 @@
 <template>
     <div class="step">
-
-        <input-field  title="Фамилия*" 
-                placeholder="Фамилия" 
-                name="last-name"
-                class="client-form__field"
-                :error="$v.lastName.$error" 
-                v-model="$v.lastName.$model">
-            <p v-if="!$v.lastName.required">Поле обязательно для заполнения.</p>
-        </input-field>
-
-        <input-field  title="Имя*" 
-                placeholder="Имя" 
-                name="first-name"
-                class="client-form__field"
-                :error="$v.firstName.$error" 
-                v-model="$v.firstName.$model">
-            <p v-if="!$v.firstName.required">Поле обязательно для заполнения.</p>
-        </input-field>
-
-        <input-field  title="Отчество" 
-                placeholder="Отчество" 
-                name="middle-name"
-                class="client-form__field"
-                :error="false" 
-                v-model="middleName">
-        </input-field>
-
-        <input-field  title="Дата рождения*"
-                type="date" 
-                placeholder="Дата рождения" 
-                name="birth-date"
-                class="client-form__field"
-                :error="$v.birthDate.$error" 
-                v-model="$v.birthDate.$model">
-            <p v-if="!$v.birthDate.required">Поле обязательно для заполнения.</p>
-        </input-field>
-
+        <h4>Шаг 2</h4>
         <input-field  title="Номер телефона*" 
                 placeholder="79990001122" 
                 name="phone-number"
@@ -100,29 +64,28 @@
             </template>
         </select-field>
 
-        <checkbox-field primValue="push-sms" v-model="pushSms" :checked="pushSms">
+        <checkbox-field primValue="push-sms" v-model="pushSms" :checked="pushSms" class="checkbox-field_margin-bottom_20">
             <template v-slot:label>Отправлять смс</template>
         </checkbox-field>
+
+        <custom-button arrow @click.native="next">Шаг 3</custom-button>
     </div>
 </template>
 
 <script>
-import InputField from "@/components/InputField.vue"
-import FieldTemplate from "@/components/FieldTemplate.vue"
-import CustomRadio from "@/components/CustomRadio.vue"
-import SelectField from "@/components/SelectField.vue"
-import CheckboxField from "@/components/CheckboxField.vue"
-import CheckboxGroup from "@/components/CheckboxGroup.vue"
+import InputField from "@/components/base/InputField.vue"
+import FieldTemplate from "@/components/base/FieldTemplate.vue"
+import CustomRadio from "@/components/base/CustomRadio.vue"
+import SelectField from "@/components/base/SelectField.vue"
+import CheckboxField from "@/components/base/CheckboxField.vue"
+import CheckboxGroup from "@/components/base/CheckboxGroup.vue"
+import CustomButton from "@/components/base/CustomButton.vue"
 import { required } from "vuelidate/lib/validators"
 
 export default {
-    name: "FirstStep",
+    name: "SecondStep",
     data(){
         return {
-            lastName: "",
-            firstName: "",
-            middleName: "",
-            birthDate: "",
             phoneNumber: "",
             gender: "male",
             clientsGroup: {
@@ -134,16 +97,14 @@ export default {
             pushSms: true 
         }
     },
+    methods: {
+        next(){
+            this.$v.$touch();
+            if(!this.$v.$invalid)
+                this.$emit('next', 1);
+        }
+    },
     validations: {
-        lastName: {
-            required
-        },
-        firstName: {
-            required
-        },
-        birthDate: {
-            required
-        },
         phoneNumber: {
             required,
             isPhone(value){
@@ -173,7 +134,8 @@ export default {
         CustomRadio,
         SelectField,
         CheckboxField,
-        CheckboxGroup
+        CheckboxGroup,
+        CustomButton
     }
 }
 </script>

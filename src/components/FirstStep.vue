@@ -37,7 +37,7 @@
             <p v-if="!$v.birthDate.required">Поле обязательно для заполнения.</p>
         </input-field>
 
-        <custom-button arrow @click="next">Шаг 2</custom-button>
+        <custom-button arrow @click.native="next">Шаг 2</custom-button>
     </div>
 </template>
 
@@ -69,7 +69,9 @@ export default {
     },
     methods: {
         next(){
-
+            this.$v.$touch();
+            if(!this.$v.$invalid)
+                this.$emit('next', 0);
         }
     },
     components: {
